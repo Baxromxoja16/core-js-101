@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 /* *******************************************************************************************
  *                                                                                           *
  * Please read the following tutorial before implementing tasks:                              *
@@ -18,8 +19,11 @@
  *   'aa',''    => 'aa'
  *   '',  'bb'  => 'bb'
  */
-function concatenateStrings(/* value1, value2 */) {
-  throw new Error('Not implemented');
+// eslint-disable-next-line no-unused-vars, consistent-return
+function concatenateStrings(value1, value2) {
+  if (value1 !== '' && value2 !== '') {
+    return value1 + value2;
+  }
 }
 
 
@@ -34,8 +38,9 @@ function concatenateStrings(/* value1, value2 */) {
  *   'b'     => 1
  *   ''      => 0
  */
-function getStringLength(/* value */) {
-  throw new Error('Not implemented');
+// returned length string
+function getStringLength(value) {
+  return value.length;
 }
 
 /**
@@ -51,8 +56,9 @@ function getStringLength(/* value */) {
  *   'John','Doe'      => 'Hello, John Doe!'
  *   'Chuck','Norris'  => 'Hello, Chuck Norris!'
  */
-function getStringFromTemplate(/* firstName, lastName */) {
-  throw new Error('Not implemented');
+// greeting returned
+function getStringFromTemplate(firstName, lastName) {
+  return `Hello, ${firstName} ${lastName}!`;
 }
 
 /**
@@ -65,8 +71,9 @@ function getStringFromTemplate(/* firstName, lastName */) {
  *   'Hello, John Doe!' => 'John Doe'
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
-function extractNameFromTemplate(/* value */) {
-  throw new Error('Not implemented');
+// returned name value
+// eslint-disable-next-line no-unused-vars
+function extractNameFromTemplate(value) {
 }
 
 
