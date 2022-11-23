@@ -216,7 +216,7 @@ function extractEmails(str) {
  *
  */
 function getRectangleString(width, height) {
-  
+  return width + height;
 }
 
 
