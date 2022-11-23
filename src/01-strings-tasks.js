@@ -20,9 +20,7 @@
  */
 // eslint-disable-next-line no-unused-vars, consistent-return
 function concatenateStrings(value1, value2) {
-  if (value1 !== '' && value2 !== '') {
-    return value1 + value2;
-  }
+  return value1 + value2;
 }
 
 /**
@@ -101,7 +99,7 @@ function getFirstChar(str) {
  *   '\tHello, World! ' => 'Hello, World!'
  */
 function removeLeadingAndTrailingWhitespaces(str) {
-  return str.replace(/\t/g, '');
+  return str.trim();
 }
 
 /**
@@ -262,11 +260,16 @@ function getRectangleString(width, height) {
  *
  */
 function encodeToRot13(str) {
-  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-  const newAlphabet = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
+  const alphabet = 'abcdefghijklmnopqrstuvwxyz';
   let result = '';
   for (let i = 0; i < str.length; i += 1) {
-    result += newAlphabet.charAt(alphabet.search(str[i]));
+    const index = alphabet.indexOf(str[i].toLowerCase());
+    if (index > -1) {
+      const letter = index < 13 ? alphabet[index + 13] : alphabet[index - 13];
+      result += str[i] === str[i].toLowerCase() ? letter : letter.toUpperCase();
+    } else {
+      result += str[i];
+    }
   }
   return result;
 }
