@@ -6,7 +6,6 @@
  *                                                                                           *
  ******************************************************************************************* */
 
-
 /**
  * Returns the result of concatenation of two strings.
  *
@@ -25,7 +24,6 @@ function concatenateStrings(value1, value2) {
     return value1 + value2;
   }
 }
-
 
 /**
  * Returns the length of given string.
@@ -76,7 +74,6 @@ function getStringFromTemplate(firstName, lastName) {
 function extractNameFromTemplate(value) {
   return value.split(/,\s|!/)[1];
 }
-
 
 /**
  * Returns a first char of the given string.
@@ -158,7 +155,6 @@ function unbracketTag(str) {
   return str.slice(1, -1);
 }
 
-
 /**
  * Converts all characters of the specified string into the upper case
  *
@@ -216,9 +212,38 @@ function extractEmails(str) {
  *
  */
 function getRectangleString(width, height) {
-  return width + height;
+  let result = '';
+  for (let r = 1; r <= height; r += 1) {
+    let row = '';
+    for (let c = 1; c <= width; c += 1) {
+      if (r === 1) {
+        if (c === 1) {
+          row += '┌';
+        } else if (c === width) {
+          row += '┐\n';
+        } else {
+          row += '─';
+        }
+      } else if (r === height) {
+        if (c === 1) {
+          row += '└';
+        } else if (c === width) {
+          row += '┘\n';
+        } else {
+          row += '─';
+        }
+      } else if (c === 1) {
+        row += '│';
+      } else if (c === width) {
+        row += '│\n';
+      } else {
+        row += ' ';
+      }
+    }
+    result += row;
+  }
+  return result;
 }
-
 
 /**
  * Encode specified string with ROT13 cipher
@@ -236,8 +261,14 @@ function getRectangleString(width, height) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  const newAlphabet = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
+  let result = '';
+  for (let i = 0; i < str.length; i += 1) {
+    result += newAlphabet.charAt(alphabet.search(str[i]));
+  }
+  return result;
 }
 
 /**
@@ -253,10 +284,12 @@ function encodeToRot13(/* str */) {
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-function isString(/* value */) {
-  throw new Error('Not implemented');
+function isString(value) {
+  if (typeof value === 'object') {
+    return value instanceof String;
+  }
+  return typeof value === 'string';
 }
-
 
 /**
  * Returns playid card id.
@@ -282,10 +315,63 @@ function isString(/* value */) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(/* value */) {
-  throw new Error('Not implemented');
+function getCardId(value) {
+  const card = [
+    'A♣',
+    '2♣',
+    '3♣',
+    '4♣',
+    '5♣',
+    '6♣',
+    '7♣',
+    '8♣',
+    '9♣',
+    '10♣',
+    'J♣',
+    'Q♣',
+    'K♣',
+    'A♦',
+    '2♦',
+    '3♦',
+    '4♦',
+    '5♦',
+    '6♦',
+    '7♦',
+    '8♦',
+    '9♦',
+    '10♦',
+    'J♦',
+    'Q♦',
+    'K♦',
+    'A♥',
+    '2♥',
+    '3♥',
+    '4♥',
+    '5♥',
+    '6♥',
+    '7♥',
+    '8♥',
+    '9♥',
+    '10♥',
+    'J♥',
+    'Q♥',
+    'K♥',
+    'A♠',
+    '2♠',
+    '3♠',
+    '4♠',
+    '5♠',
+    '6♠',
+    '7♠',
+    '8♠',
+    '9♠',
+    '10♠',
+    'J♠',
+    'Q♠',
+    'K♠',
+  ];
+  return card.indexOf(value);
 }
-
 
 module.exports = {
   concatenateStrings,
