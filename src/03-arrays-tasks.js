@@ -622,8 +622,28 @@ function getElementByIndexes(arr, indexes) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8 ]   =>  [ 5, 6, 7, 8, 1, 2, 3, 4 ]
  *
  */
-function swapHeadAndTail(/* arr */) {
-  throw new Error('Not implemented');
+// eslint-disable-next-line consistent-return
+function swapHeadAndTail(arr) {
+  if (arr.length % 2 !== 0) {
+    const main = arr;
+    const center = main.length / 2;
+    const head = main.splice(0, center);
+    const tail = main.splice(1, arr.length - 1);
+    main.push(...head);
+    main.unshift(...tail);
+    return main;
+  }
+  if (arr.length === 2) {
+    return arr.reverse();
+  }
+  if (arr.length % 2 === 0) {
+    const main = arr;
+    const center = main.length / 2;
+    const head = main.splice(0, center);
+    const tail = main.splice(0, arr.length);
+    main.push(...tail, ...head);
+    return main;
+  }
 }
 
 
