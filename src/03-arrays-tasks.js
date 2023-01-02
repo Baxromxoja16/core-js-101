@@ -36,13 +36,7 @@ function findElement(arr, value) {
  *    5 => [ 1, 3, 5, 7, 9 ]
  */
 function generateOdds(len) {
-  const arr = [];
-  let val = 1;
-  for (let i = 1; i <= len; i += 1) {
-    arr.push(val);
-    val += 2;
-  }
-  return arr;
+  return [...Array(len).keys()].map((i) => i * 2 + 1);
 }
 
 
@@ -75,13 +69,7 @@ function doubleArray(arr) {
  *    [] => []
  */
 function getArrayOfPositives(arr) {
-  const answer = [];
-  for (let i = 0; i < arr.length; i += 1) {
-    if (arr[i] > 0) {
-      answer.push(arr[i]);
-    }
-  }
-  return answer;
+  return arr.map((e) => e > 0);
 }
 
 /**
