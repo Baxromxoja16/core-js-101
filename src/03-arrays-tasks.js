@@ -69,7 +69,7 @@ function doubleArray(arr) {
  *    [] => []
  */
 function getArrayOfPositives(arr) {
-  return arr.map((e) => e > 0);
+  return arr.filter((e) => e > 0);
 }
 
 /**
@@ -612,26 +612,23 @@ function getElementByIndexes(arr, indexes) {
  */
 // eslint-disable-next-line consistent-return
 function swapHeadAndTail(arr) {
+  let middle = null;
+  if (arr.length <= 1) {
+    return arr;
+  }
+
+  const average = Math.floor(arr.length / 2);
   if (arr.length % 2 !== 0) {
-    const main = arr;
-    const center = main.length / 2;
-    const head = main.splice(0, center);
-    const tail = main.splice(1, arr.length - 1);
-    main.push(...head);
-    main.unshift(...tail);
-    return main;
+    middle = arr[average];
+    arr.splice(average, 1);
   }
-  if (arr.length === 2) {
-    return arr.reverse();
+
+  const start = arr.splice(0, average);
+  const end = arr;
+  if (middle) {
+    return [].concat(end, middle, start);
   }
-  if (arr.length % 2 === 0) {
-    const main = arr;
-    const center = main.length / 2;
-    const head = main.splice(0, center);
-    const tail = main.splice(0, arr.length);
-    main.push(...tail, ...head);
-    return main;
-  }
+  return [].concat(end, start);
 }
 
 
